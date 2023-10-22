@@ -86,8 +86,8 @@ namespace LineagesComparison.Calculation
                     .Where(x => x.Lineage1 == lineage && x.Lineage2 == lineage)
                     .ToArray();
 
-                float average = (float)Math.Round(toCount.Sum(x => x.Value) / toCount.Length, 2);
-                float percentage = average * 100f;
+                float average = toCount.Sum(x => x.Value) / toCount.Length;
+                float percentage = (float)Math.Round(average * 100f, 2);
 
                 builder.AppendLine($"{lineage}, среднее = {average}, процент = {percentage}");
             }
@@ -107,8 +107,8 @@ namespace LineagesComparison.Calculation
                             || x.Lineage2 == firstLineage && x.Lineage1 == secondLineage)
                         .ToArray();
 
-                    float average = (float)Math.Round(toCount.Sum(x => x.Value) / toCount.Length, 2);
-                    float percentage = average * 100f;
+                    float average = toCount.Sum(x => x.Value) / toCount.Length;
+                    float percentage = (float)Math.Round(average * 100f, 2);
 
                     builder.AppendLine($"Линии {firstLineage} и {secondLineage}, среднее = {average}, процент = {percentage}");
                 }
