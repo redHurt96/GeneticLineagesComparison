@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LineagesComparison", "LineagesComparison.csproj", "{F6787CCC-D830-470D-A0F7-6A61EA6BC5E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6787CCC-D830-470D-A0F7-6A61EA6BC5E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6787CCC-D830-470D-A0F7-6A61EA6BC5E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6787CCC-D830-470D-A0F7-6A61EA6BC5E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6787CCC-D830-470D-A0F7-6A61EA6BC5E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A5C89A5-C2DA-4C4D-8EAA-BE112C418872}
+	EndGlobalSection
+EndGlobal
