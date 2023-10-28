@@ -8,23 +8,15 @@ namespace LineagesComparison.Calculation
 {
     internal static class AverageCalculator
     {
-        public static string Execute(string filePath, string namesFilePath)
+        public static string Execute(string filePath, SamplesPerLineages samplesPerLineages)
         {
             StringBuilder builder = new StringBuilder();
-
-            Dictionary<string, string[]> _lineagesForSamples = SamplesNamesParser.Parse(namesFilePath);
-
-            string LineageForSample(string sample) =>
-                _lineagesForSamples.First(x => x.Value.Any(y => sample.ToLower().Contains(y.ToLower()))).Key;
-
+            
             List<string> fileLines = File.ReadAllLines(filePath).ToList();
-
-            string[] samplesNames = fileLines.First().Split(',').Skip(1).ToArray();
-            fileLines.RemoveAt(0);
-
             List<float[]> comparisonValues = new List<float[]>();
+            string[] samplesOrder = fileLines.First().Split(',').Skip(1).ToArray();
 
-            foreach (string fileLine in fileLines)
+            foreach (string fileLine in fileLines.Skip(1))
             {
                 List<string> values = fileLine
                     .Split(',')
@@ -40,7 +32,7 @@ namespace LineagesComparison.Calculation
                         .ToArray());
             }
 
-            List<SampleComparison> sampleComparisons = new List<SampleComparison>();
+            List<SampleComparison> sampleComparisons = new List<SampleComparison>(15000);
 
             for (int i = 0; i < comparisonValues.Count; i++)
             {
@@ -48,17 +40,17 @@ namespace LineagesComparison.Calculation
                 {
                     SampleComparison comparison = new SampleComparison();
 
-                    comparison.Sample1 = samplesNames[i];
-                    comparison.Sample2 = samplesNames[j];
-                    comparison.Lineage1 = LineageForSample(samplesNames[i]);
-                    comparison.Lineage2 = LineageForSample(samplesNames[j]);
+                    comparison.Sample1 = samplesOrder[i];
+                    comparison.Sample2 = samplesOrder[j];
+                    comparison.Lineage1 = samplesPerLineages.LineageFor(samplesOrder[i]);
+                    comparison.Lineage2 = samplesPerLineages.LineageFor(samplesOrder[j]);
                     comparison.Value = comparisonValues[i][j];
 
                     sampleComparisons.Add(comparison);
                 }
             }
 
-            string[] lineages = _lineagesForSamples.Keys.OrderBy(x => x).ToArray();
+            string[] lineages = samplesPerLineages.Lineages();
 
             builder.AppendLine("Внутри линий");
 

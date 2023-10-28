@@ -66,6 +66,7 @@
     <Compile Include="Calculation\AverageCalculator.cs" />
     <Compile Include="Calculation\SampleComparison.cs" />
     <Compile Include="Calculation\SamplesNamesParser.cs" />
+    <Compile Include="Calculation\SamplesPerLineages.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
