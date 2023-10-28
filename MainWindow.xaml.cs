@@ -7,13 +7,13 @@ namespace LineagesComparison
 {
     public partial class MainWindow : Window
     {
+        private Label _namesPathLabel;
         private Label _pathLabel;
         private TextBox _namesTextBox;
         private TextBox _resultTextBox;
         private Button _calculateButton;
         private Button _copyButton;
 
-        private string _namesFilePath;
         private string _path;
         private string _result;
         private SamplesPerLineages _samplesPerLineages;
@@ -25,6 +25,10 @@ namespace LineagesComparison
             object labelObj = FindName("fileName_label");
             if (labelObj != null)
                 _pathLabel = labelObj as Label;
+            
+            object namesLabelObj = FindName("fileName_NamesLabel");
+            if (labelObj != null)
+                _namesPathLabel = namesLabelObj as Label;
 
             object textBox = FindName("result_textBox");
             if (textBox != null)
@@ -58,9 +62,10 @@ namespace LineagesComparison
 
             if (result != null && result == true)
             {
-                _namesFilePath = openFileDialog.FileName;
-                _samplesPerLineages = SamplesPerLineagesParser.Execute(_namesFilePath);
+                string namesFilePath = openFileDialog.FileName;
+                _samplesPerLineages = SamplesPerLineagesParser.Execute(namesFilePath);
                 _namesTextBox.Text = _samplesPerLineages.ToString();
+                _namesPathLabel.Content = namesFilePath;
             }
 
             UpdateCalculateButtonVisibility();
