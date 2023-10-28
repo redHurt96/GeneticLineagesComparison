@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LineagesComparison"
         mc:Ignorable="d"
-        Title="Расчет среднего" Height="450" Width="500" ResizeMode="NoResize">
+        Title="Расчет среднего" Height="650" Width="500" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -13,11 +13,13 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="choose_file_button" Content="Выбрать файл" HorizontalAlignment="Left" Margin="27,30,0,0" VerticalAlignment="Top" Width="194" Click="button_Click" Height="20"/>
-        <Label x:Name="label" Content="Файл:" HorizontalAlignment="Left" Margin="27,65,0,0" VerticalAlignment="Top" FontStyle="Italic" Height="26" Width="42"/>
-        <Label x:Name="fileName_label" Content="" HorizontalAlignment="Left" Margin="88,65,0,0" VerticalAlignment="Top" FontStyle="Italic" Width="354" Height="26"/>
-        <Button x:Name="calculate_button" Content="Посчитать" HorizontalAlignment="Center" Margin="0,130,0,0" VerticalAlignment="Top" Width="194" Click="calculate_button_Click" Height="20"/>
-        <TextBox x:Name="result_textBox" HorizontalAlignment="Left" Margin="22,155,0,0" TextWrapping="Wrap" Text="Результат:" VerticalAlignment="Top" Width="468" Height="269"/>
+        <Button x:Name="choose_file_button" Content="Выбрать файл со сравнениями" HorizontalAlignment="Left" Margin="16,266,0,0" VerticalAlignment="Top" Width="205" Click="button_Click" Height="20"/>
+        <Label x:Name="label" Content="Путь:" HorizontalAlignment="Left" Margin="16,291,0,0" VerticalAlignment="Top" FontStyle="Italic" Height="26" Width="42"/>
+        <Label x:Name="fileName_label" Content="" HorizontalAlignment="Left" Margin="63,291,0,0" VerticalAlignment="Top" FontStyle="Italic" Width="421" Height="26"/>
+        <Button x:Name="calculate_button" Content="Посчитать" HorizontalAlignment="Left" Margin="147,330,0,0" VerticalAlignment="Top" Width="194" Click="calculate_button_Click" Height="20"/>
+        <TextBox x:Name="result_textBox" HorizontalAlignment="Center" Margin="0,355,0,0" TextWrapping="Wrap" Text="Результат:" VerticalAlignment="Top" Width="468" Height="269"/>
+        <Button x:Name="choose_names_file_button" Content="Выбрать файл с названиями" HorizontalAlignment="Left" Margin="16,10,0,0" VerticalAlignment="Top" Width="205" Click="choose_names_file_button_Click" Height="20"/>
+        <TextBox x:Name="names_textBox" HorizontalAlignment="Center" Margin="0,48,0,0" TextWrapping="Wrap" Text="Результат:" VerticalAlignment="Top" Width="468" Height="197"/>
 
     </Grid>
 </Window>

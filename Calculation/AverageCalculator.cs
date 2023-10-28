@@ -8,11 +8,11 @@ namespace LineagesComparison.Calculation
 {
     internal static class AverageCalculator
     {
-        public static string Execute(string filePath)
+        public static string Execute(string filePath, string namesFilePath)
         {
             StringBuilder builder = new StringBuilder();
 
-            Dictionary<string, string[]> _lineagesForSamples = SamplesNamesParser.Parse(string.Empty);
+            Dictionary<string, string[]> _lineagesForSamples = SamplesNamesParser.Parse(namesFilePath);
 
             string LineageForSample(string sample) =>
                 _lineagesForSamples.First(x => x.Value.Any(y => sample.ToLower().Contains(y.ToLower()))).Key;
