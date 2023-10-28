@@ -16,6 +16,9 @@ namespace LineagesComparison.Calculation
             List<float[]> comparisonValues = new List<float[]>();
             string[] samplesOrder = fileLines.First().Split(',').Skip(1).ToArray();
 
+            if (AllDataIsValid(samplesOrder, samplesPerLineages.Samples(), out string errorMessage))
+                return errorMessage;
+
             foreach (string fileLine in fileLines.Skip(1))
             {
                 List<string> values = fileLine
@@ -89,6 +92,27 @@ namespace LineagesComparison.Calculation
             }
 
             return builder.ToString();
+        }
+
+        private static bool AllDataIsValid(string[] samplesInComparisonFile, string[] samplesInNamesFile, out string errorMessage)
+        {
+            StringBuilder builder = new StringBuilder();
+
+            foreach (string sample in samplesInComparisonFile)
+            {
+                if (samplesInNamesFile.All(x => !x.Equals(sample, StringComparison.InvariantCultureIgnoreCase)))
+                    builder.AppendLine($"Файл с названиями не содержит пробу {sample}");
+            }
+            
+            //foreach (string sampleName in samplesInNamesFile)
+            //{
+            //    if (samplesInComparisonFile.All(x => !x.Equals(sampleName, StringComparison.InvariantCultureIgnoreCase)))
+            //        builder.AppendLine($"Файл со сравнениями не содержит пробу {sampleName}");
+            //}
+
+            errorMessage = builder.ToString();
+
+            return !string.IsNullOrEmpty(errorMessage);
         }
     }
 }

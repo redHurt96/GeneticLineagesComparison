@@ -11,9 +11,11 @@ namespace LineagesComparison
         private TextBox _namesTextBox;
         private TextBox _resultTextBox;
         private Button _calculateButton;
+        private Button _copyButton;
 
         private string _namesFilePath;
         private string _path;
+        private string _result;
         private SamplesPerLineages _samplesPerLineages;
 
         public MainWindow()
@@ -37,6 +39,13 @@ namespace LineagesComparison
             { 
                 _calculateButton = calculateButton as Button;
                 _calculateButton.Visibility = Visibility.Hidden;
+            }
+            
+            object copyButton = FindName("copy_button");
+            if (calculateButton != null)
+            {
+                _copyButton = copyButton as Button;
+                _copyButton.Visibility = Visibility.Hidden;
             }
         }
 
@@ -73,12 +82,19 @@ namespace LineagesComparison
             UpdateCalculateButtonVisibility();
         }
 
-        private void calculate_button_Click(object sender, RoutedEventArgs e) => 
-            _resultTextBox.Text = AverageCalculator.Execute(_path, _samplesPerLineages);
+        private void calculate_button_Click(object sender, RoutedEventArgs e)
+        {
+            _result = AverageCalculator.Execute(_path, _samplesPerLineages);
+            _resultTextBox.Text = _result;
+            _copyButton.Visibility = Visibility.Visible;
+        }
 
         private void UpdateCalculateButtonVisibility() => 
             _calculateButton.Visibility = _path != null && _samplesPerLineages != null
                 ? Visibility.Visible
                 : Visibility.Hidden;
+
+        private void copy_Button_Click(object sender, RoutedEventArgs e) => 
+            Clipboard.SetText(_result);
     }
 }

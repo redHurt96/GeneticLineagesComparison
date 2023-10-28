@@ -20,6 +20,7 @@
         <TextBox x:Name="result_textBox" HorizontalAlignment="Center" Margin="0,355,0,0" TextWrapping="Wrap" Text="Результат:" VerticalAlignment="Top" Width="468" Height="269"/>
         <Button x:Name="choose_names_file_button" Content="Выбрать файл с названиями" HorizontalAlignment="Left" Margin="16,10,0,0" VerticalAlignment="Top" Width="205" Click="choose_names_file_button_Click" Height="20"/>
         <TextBox x:Name="names_textBox" HorizontalAlignment="Center" Margin="0,48,0,0" TextWrapping="Wrap" Text="Результат:" VerticalAlignment="Top" Width="468" Height="197"/>
+        <Button x:Name="copy_button" Content="Копировать" HorizontalAlignment="Left" Margin="397,330,0,0" VerticalAlignment="Top" Width="87" Click="copy_Button_Click" Height="20"/>
 
     </Grid>
 </Window>
