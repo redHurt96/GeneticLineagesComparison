@@ -1,5 +1,7 @@
 ﻿using LineagesComparison.Calculation;
 using Microsoft.Win32;
+using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -7,6 +9,8 @@ namespace LineagesComparison
 {
     public partial class MainWindow : Window
     {
+        private const string DEFAULT_SAMPLES_NAMES_FILENAME = "DefaultSamplesNames.csv";
+
         private Label _namesPathLabel;
         private Label _pathLabel;
         private TextBox _namesTextBox;
@@ -63,12 +67,8 @@ namespace LineagesComparison
             if (result != null && result == true)
             {
                 string namesFilePath = openFileDialog.FileName;
-                _samplesPerLineages = SamplesPerLineagesParser.Execute(namesFilePath);
-                _namesTextBox.Text = _samplesPerLineages.ToString();
-                _namesPathLabel.Content = namesFilePath;
+                LoadSamplesNames(namesFilePath);
             }
-
-            UpdateCalculateButtonVisibility();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -94,12 +94,24 @@ namespace LineagesComparison
             _copyButton.Visibility = Visibility.Visible;
         }
 
+        private void copy_Button_Click(object sender, RoutedEventArgs e) => 
+            Clipboard.SetText(_result);
+
+        private void choose_default_names_button_Click(object sender, RoutedEventArgs e) => 
+            LoadSamplesNames(Path.Combine(Environment.CurrentDirectory, DEFAULT_SAMPLES_NAMES_FILENAME));
+
+        private void LoadSamplesNames(string namesFilePath)
+        {
+            _samplesPerLineages = SamplesPerLineagesParser.Execute(namesFilePath);
+            _namesTextBox.Text = _samplesPerLineages.ToString();
+            _namesPathLabel.Content = namesFilePath;
+
+            UpdateCalculateButtonVisibility();
+        }
+
         private void UpdateCalculateButtonVisibility() => 
             _calculateButton.Visibility = _path != null && _samplesPerLineages != null
                 ? Visibility.Visible
                 : Visibility.Hidden;
-
-        private void copy_Button_Click(object sender, RoutedEventArgs e) => 
-            Clipboard.SetText(_result);
     }
 }
