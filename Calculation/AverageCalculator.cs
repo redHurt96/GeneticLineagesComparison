@@ -11,6 +11,9 @@ namespace LineagesComparison.Calculation
         public static string Execute(string filePath, SamplesPerLineages samplesPerLineages)
         {
             StringBuilder builder = new StringBuilder();
+
+            builder.AppendLine(filePath.Split('\\').Last());
+            builder.AppendLine();
             
             List<string> fileLines = File.ReadAllLines(filePath).ToList();
             List<float[]> comparisonValues = new List<float[]>();
@@ -66,7 +69,7 @@ namespace LineagesComparison.Calculation
                 float average = toCount.Sum(x => x.Value) / toCount.Length;
                 float percentage = (float)Math.Round(average * 100f, 2);
 
-                builder.AppendLine($"{lineage}, среднее = {average}, процент = {percentage}");
+                builder.AppendLine($"{lineage} = {percentage} %");
             }
 
             builder.AppendLine("Между линиями");
@@ -87,7 +90,7 @@ namespace LineagesComparison.Calculation
                     float average = toCount.Sum(x => x.Value) / toCount.Length;
                     float percentage = (float)Math.Round(average * 100f, 2);
 
-                    builder.AppendLine($"Линии {firstLineage} и {secondLineage}, среднее = {average}, процент = {percentage}");
+                    builder.AppendLine($"{firstLineage} и {secondLineage} = {percentage} %");
                 }
             }
 
